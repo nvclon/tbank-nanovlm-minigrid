@@ -148,7 +148,7 @@ The parser uses the final `Action:` field.
 scripts/02_train_sft_action.ps1
 ```
 
-For the final reported SFT-action metrics, `outputs/final_rerun/sft_action/step_1000` is used, because it gave the best closed-loop evaluation among saved checkpoints.
+For the final reported SFT-action metrics, `outputs/main/sft_action/step_1000` is used, because it gave the best closed-loop evaluation among saved checkpoints.
 
 ### SFT text+action
 

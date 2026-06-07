@@ -1,1 +1,1 @@
-python -m src.train_grpo_action_fast --checkpoint-path outputs/final_rerun/sft_action/step_1000 --updates 20 --group-size 4 --eval-every 5 --eval-episodes 20 --save-every 10 --temperature 1.2 --lr 1e-6 --max-episode-steps 30 --output-dir outputs/final_rerun/grpo_action
+python -m src.train_grpo_action_fast --checkpoint-path outputs/main/sft_action/step_1000 --updates 20 --group-size 4 --eval-every 5 --eval-episodes 20 --save-every 10 --temperature 1.2 --lr 1e-6 --max-episode-steps 30 --output-dir outputs/main/grpo_action

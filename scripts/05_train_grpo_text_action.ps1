@@ -1,1 +1,1 @@
-python -m src.train_grpo_text_action_free --checkpoint-path outputs/final_rerun/sft_text_action/final --updates 10 --group-size 4 --temperature 2.0 --eval-every 5 --eval-episodes 5 --max-new-tokens 40 --lr 1e-6 --output-dir outputs/final_rerun/grpo_text_action
+python -m src.train_grpo_text_action_free --checkpoint-path outputs/main/sft_text_action/final --updates 10 --group-size 4 --temperature 2.0 --eval-every 5 --eval-episodes 5 --max-new-tokens 40 --lr 1e-6 --output-dir outputs/main/grpo_text_action
