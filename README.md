@@ -1,16 +1,111 @@
 # NanoVLM MiniGrid Fine-tuning
 
-This repository contains a small reproducible pipeline for adapting a vision-and-language model, NanoVLM, to control an agent in `MiniGrid-Empty-8x8-v0`.
+This repository contains a reproducible pipeline for fine-tuning **NanoVLM** to control an agent in `MiniGrid-Empty-8x8-v0`.
 
 The project compares:
 
-- supervised fine-tuning (SFT) on expert trajectories;
-- GRPO-style reinforcement learning fine-tuning;
+- **SFT** on expert trajectories;
+- **GRPO-style** RL fine-tuning;
 - two output formats:
   - direct action: `left`, `right`, `forward`;
-  - text + action: short state/plan description followed by `Action: ...`.
+  - text + action: short explanation followed by `Action: ...`.
 
-The environment is intentionally simple. `EmptyEnv` can be solved by a symbolic shortest-path policy, so the goal of this project is not to outperform the oracle expert, but to build and evaluate the full VLM control pipeline.
+The final metrics, plots, and trajectory visualizations are included in `results/`.
+
+---
+
+## Quick start
+
+Clone the repository:
+
+```powershell
+git clone https://github.com/nvclon/tbank-nanovlm-minigrid.git
+cd tbank-nanovlm-minigrid
+```
+
+Create an environment:
+
+```powershell
+conda create -n nanovlm_minigrid python=3.10 -y
+conda activate nanovlm_minigrid
+```
+
+Install dependencies:
+
+```powershell
+pip install -r requirements.txt
+```
+
+Clone NanoVLM into the project folder:
+
+```powershell
+git clone https://github.com/huggingface/nanoVLM.git nanoVLM
+```
+
+Run a quick smoke test on Windows:
+
+```powershell
+.\scripts\run_smoke_pipeline.ps1
+```
+
+Run a quick smoke test on Linux/macOS:
+
+```bash
+chmod +x scripts/*.sh
+bash scripts/run_smoke_pipeline.sh
+```
+
+The smoke test checks that dataset generation, SFT, GRPO, evaluation, and trajectory rendering run end-to-end. It uses a tiny dataset and very few training steps, so its metrics are not expected to match the final report.
+
+---
+
+## Full reproduction
+
+To reproduce the full experiment on Windows:
+
+```powershell
+.\scripts\run_full_pipeline.ps1
+```
+
+To reproduce the full experiment on Linux/macOS:
+
+```bash
+chmod +x scripts/*.sh
+bash scripts/run_full_pipeline.sh
+```
+
+The full run performs:
+
+1. expert dataset collection;
+2. SFT action-only training;
+3. SFT text+action training;
+4. GRPO-action training;
+5. GRPO-text+action training;
+6. final evaluation;
+7. trajectory visualization;
+8. export of metrics, plots, and images to `results/`.
+
+The full run can take several hours on a 6GB GPU.
+
+After the run, the important lightweight artifacts are written to:
+
+```text
+results/
+  metrics/
+  figures/
+  trajectories/
+```
+
+Large generated files are stored in:
+
+```text
+outputs/
+data/
+```
+
+These folders are ignored by Git.
+
+---
 
 ## Repository structure
 
@@ -41,6 +136,10 @@ src/
     make_result_figures.py
 
 scripts/
+  run_smoke_pipeline.ps1
+  run_full_pipeline.ps1
+  run_smoke_pipeline.sh
+  run_full_pipeline.sh
   01_collect_data.ps1
   02_train_sft_action.ps1
   03_train_sft_text_action.ps1
@@ -49,6 +148,7 @@ scripts/
   06_eval_final.ps1
   07_make_trajectories.ps1
   08_make_figures.ps1
+  09_export_results.ps1
 
 results/
   metrics/
@@ -60,59 +160,50 @@ tools/
   experiments/
 ```
 
-Large checkpoints and generated datasets are not committed. They can be reproduced with the scripts in `scripts/`.
-
-## Setup
-
-The code was tested with Python 3.10 and CUDA 11.8.
-
-Install dependencies:
-
-```powershell
-pip install -r requirements.txt
-```
-
-Clone NanoVLM into the project directory:
-
-```powershell
-git clone https://github.com/huggingface/nanoVLM.git nanoVLM
-```
-
-Expected directory layout:
-
-```text
-tbank-nanovlm-minigrid/
-  nanoVLM/
-  src/
-  scripts/
-  results/
-```
+---
 
 ## Dataset and expert
 
 The expert is a shortest-path oracle for `MiniGrid-Empty-8x8-v0`.
 
-The expert uses privileged simulator state only for labeling:
+It uses privileged simulator state only for labeling:
 
 - agent position;
 - agent direction;
 - goal position.
 
-The NanoVLM policy receives only rendered RGB observations.
+The NanoVLM policy itself receives only rendered RGB images.
 
-This choice is appropriate for `EmptyEnv`, because the room contains no internal obstacles. Therefore, the shortest path can be computed directly and reproducibly.
+This expert is suitable for `EmptyEnv`, because the room has no internal obstacles. Therefore, the optimal next action can be computed directly and reproducibly.
 
-Generate expert trajectories:
+To generate the dataset manually on Windows:
 
 ```powershell
-scripts/01_collect_data.ps1
+.\scripts\01_collect_data.ps1
 ```
 
-The generated dataset contains train/validation/test splits with image observations and target actions.
+On Linux/macOS:
+
+```bash
+bash scripts/01_collect_data.sh
+```
+
+This creates:
+
+```text
+data/expert/
+  train.jsonl
+  val.jsonl
+  test.jsonl
+  summary.json
+  images/
+```
+
+---
 
 ## Output formats
 
-### Action-only format
+### Action-only
 
 The model outputs exactly one action word:
 
@@ -120,7 +211,7 @@ The model outputs exactly one action word:
 forward
 ```
 
-Valid outputs are:
+Valid actions are:
 
 ```text
 left
@@ -128,9 +219,9 @@ right
 forward
 ```
 
-### Text + action format
+### Text + action
 
-The model outputs a short state description, a short plan, and the final action:
+The model outputs a short observation, a short plan, and the final action:
 
 ```text
 Observation: The goal is not directly in front of the agent.
@@ -138,35 +229,67 @@ Plan: Turn right to face a better direction.
 Action: right
 ```
 
-The parser uses the final `Action:` field.
+During evaluation, the parser extracts the final `Action: ...` field.
+
+---
 
 ## Training
 
 ### SFT action-only
 
+Windows:
+
 ```powershell
-scripts/02_train_sft_action.ps1
+.\scripts\02_train_sft_action.ps1
 ```
 
-For the final reported SFT-action metrics, `outputs/main/sft_action/step_1000` is used, because it gave the best closed-loop evaluation among saved checkpoints.
+Linux/macOS:
+
+```bash
+bash scripts/02_train_sft_action.sh
+```
+
+The final reported SFT-action metrics use:
+
+```text
+outputs/main/sft_action/step_1000
+```
+
+This checkpoint gave the best closed-loop result among saved SFT-action checkpoints.
 
 ### SFT text+action
 
+Windows:
+
 ```powershell
-scripts/03_train_sft_text_action.ps1
+.\scripts\03_train_sft_text_action.ps1
+```
+
+Linux/macOS:
+
+```bash
+bash scripts/03_train_sft_text_action.sh
 ```
 
 The best text+action setting freezes the vision encoder and trains:
 
 - modality projector;
-- the last language decoder block.
+- last language decoder block.
 
 This worked better than training only the last decoder block from the base model.
 
-### GRPO action-only
+### GRPO-action
+
+Windows:
 
 ```powershell
-scripts/04_train_grpo_action.ps1
+.\scripts\04_train_grpo_action.ps1
+```
+
+Linux/macOS:
+
+```bash
+bash scripts/04_train_grpo_action.sh
 ```
 
 For tractability on a 6GB GPU, this is implemented as a one-step GRPO-style variant:
@@ -178,98 +301,163 @@ For tractability on a 6GB GPU, this is implemented as a one-step GRPO-style vari
 
 ### GRPO text+action
 
+Windows:
+
 ```powershell
-scripts/05_train_grpo_text_action.ps1
+.\scripts\05_train_grpo_text_action.ps1
 ```
 
-This variant starts from the SFT text+action checkpoint and uses free-form text generation. In the final run, generated samples inside each GRPO group collapsed to the same parsed action, giving zero reward variance. Therefore, the GRPO updates were skipped. This is kept as a failure mode.
+Linux/macOS:
+
+```bash
+bash scripts/05_train_grpo_text_action.sh
+```
+
+This starts from the SFT text+action checkpoint and uses free-form generation. In the final run, generated samples inside each GRPO group usually mapped to the same parsed action and received the same reward. As a result, the GRPO updates were skipped because the group reward variance was zero.
+
+---
 
 ## Evaluation
 
-Run final evaluation:
+Run final evaluation.
+
+Windows:
 
 ```powershell
-scripts/06_eval_final.ps1
+.\scripts\06_eval_final.ps1
 ```
 
-Generate trajectory visualizations:
+Linux/macOS:
+
+```bash
+bash scripts/06_eval_final.sh
+```
+
+Generate trajectory visualizations.
+
+Windows:
 
 ```powershell
-scripts/07_make_trajectories.ps1
+.\scripts\07_make_trajectories.ps1
 ```
 
-Generate figures and summary table:
+Linux/macOS:
+
+```bash
+bash scripts/07_make_trajectories.sh
+```
+
+Export metrics, trajectories, and plots to `results/`.
+
+Windows:
 
 ```powershell
-scripts/08_make_figures.ps1
+.\scripts\09_export_results.ps1
 ```
 
-Final metrics are stored in:
+Linux/macOS:
 
-```text
-results/metrics/
+```bash
+bash scripts/09_export_results.sh
 ```
 
-Figures are stored in:
+Generate figures only.
 
-```text
-results/figures/
+Windows:
+
+```powershell
+.\scripts\08_make_figures.ps1
 ```
 
-Trajectory visualizations are stored in:
+Linux/macOS:
 
-```text
-results/trajectories/
+```bash
+bash scripts/08_make_figures.sh
 ```
 
-## Final results
+---
+
+## Results
 
 Final evaluation uses 20 episodes with `max_episode_steps=30`.
 
 | Method | Success rate | Avg return | Avg steps | Invalid rate | Notes |
 |---|---:|---:|---:|---:|---|
-| Zero-shot NanoVLM | 0.00 | 0.0000 | 30.00 | 0.00 | Collapses mostly to one valid action |
+| Zero-shot NanoVLM | 0.00 | 0.0000 | 30.00 | 0.00 | Collapses mostly to one action |
 | Forward baseline | 0.10 | 0.0984 | 27.45 | 0.00 | Always moves forward |
 | Expert | 1.00 | 0.9787 | 6.05 | 0.00 | Shortest-path oracle |
 | SFT-action | 1.00 | 0.9773 | 6.45 | 0.00 | Selected checkpoint: `step_1000` |
 | GRPO-action | 1.00 | 0.9787 | 6.05 | 0.00 | Small improvement over SFT-action |
-| SFT-text+action | 1.00 | 0.9787 | 6.05 | 0.00 | Best text+action checkpoint |
-| GRPO-text+action | 1.00 | 0.9787 | 6.05 | 0.00 | No effective update; zero group reward variance |
+| SFT-text+action | 1.00 | 0.9787 | 6.05 | 0.00 | Best text+action SFT checkpoint |
+| GRPO-text+action | 1.00 | 0.9787 | 6.05 | 0.00 | No effective update |
 
-The exact JSON files are in `results/metrics/`.
+The exact JSON metrics are in:
+
+```text
+results/metrics/
+```
+
+Plots are in:
+
+```text
+results/figures/
+```
+
+Trajectory visualizations are in:
+
+```text
+results/trajectories/
+```
+
+---
 
 ## Main observations
 
-1. Zero-shot NanoVLM can output valid action words, but it does not perform reliable visual control.
-2. SFT is sufficient to solve `EmptyEnv` because the environment is simple and fully observable.
-3. The action-only SFT policy reaches 100% success.
-4. GRPO-action gives a small improvement in average return and episode length.
-5. Text+action generation works well after longer SFT with the modality projector and last decoder block trainable.
-6. Training only the last decoder block from the base model was not enough: it fixed the output format but collapsed mostly to `forward`.
-7. GRPO-text+action did not produce effective updates because free-form generation had no group diversity.
+- Zero-shot NanoVLM can output valid action words, but it does not reliably control the agent.
+- SFT is enough to solve `EmptyEnv`, because the task is simple and fully observable.
+- GRPO-action slightly improves average episode length over SFT-action.
+- Text+action SFT works well after longer training with the modality projector and the last decoder block trainable.
+- GRPO-text+action does not improve over SFT-text+action in this setup because free-form generations become too deterministic.
 
-## Failure modes
-
-- Dataset action imbalance: `forward` dominates expert trajectories.
-- Zero-shot prompt sensitivity: the base model tends to collapse to a constant action.
-- Over-aggressive GRPO can shift action probabilities too far and degrade behavior.
-- Free-form text+action GRPO can become deterministic, producing zero reward variance inside GRPO groups.
-
-## Future work
-
-- Add KL regularization against the SFT reference policy.
-- Use entropy bonuses to improve GRPO exploration.
-- Try balanced sampling for SFT to reduce action imbalance.
-- Evaluate on larger maps such as `MiniGrid-Empty-16x16-v0`.
-- Test harder MiniGrid tasks with obstacles, doors, or keys.
-- Use LoRA instead of full last-block fine-tuning.
-- Compare constrained decoding and free-form decoding for text+action.
-- Report wall-clock efficiency in addition to environment-step efficiency.
-- Try curriculum learning from smaller to larger maps.
-- Add policy KL/action-distribution plots before and after GRPO.
+---
 
 ## Notes
 
-The submitted repository does not include model checkpoints. To reproduce them, run the scripts in order from `scripts/`.
+The repository does not include model checkpoints, generated datasets, or the NanoVLM source tree.
 
-The `results/` directory contains lightweight metrics, figures, and trajectory visualizations used in the report.
+To reproduce everything from scratch on Windows:
+
+```powershell
+git clone https://github.com/nvclon/tbank-nanovlm-minigrid.git
+cd tbank-nanovlm-minigrid
+conda create -n nanovlm_minigrid python=3.10 -y
+conda activate nanovlm_minigrid
+pip install -r requirements.txt
+git clone https://github.com/huggingface/nanoVLM.git nanoVLM
+.\scripts\run_full_pipeline.ps1
+```
+
+For a quick check on Windows:
+
+```powershell
+.\scripts\run_smoke_pipeline.ps1
+```
+
+To reproduce everything from scratch on Linux/macOS:
+
+```bash
+git clone https://github.com/nvclon/tbank-nanovlm-minigrid.git
+cd tbank-nanovlm-minigrid
+conda create -n nanovlm_minigrid python=3.10 -y
+conda activate nanovlm_minigrid
+pip install -r requirements.txt
+git clone https://github.com/huggingface/nanoVLM.git nanoVLM
+chmod +x scripts/*.sh
+bash scripts/run_full_pipeline.sh
+```
+
+For a quick check on Linux/macOS:
+
+```bash
+bash scripts/run_smoke_pipeline.sh
+```
