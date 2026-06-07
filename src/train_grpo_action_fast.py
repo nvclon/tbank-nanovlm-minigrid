@@ -12,12 +12,89 @@ from src.env_utils import randomize_agent
 from src.expert.shortest_path_expert import expert_action
 from src.models.action_sampler import sample_action, score_action
 from src.models.nanovlm_policy import NanoVLMPolicy
-from src.train_grpo_action import (
-    set_trainable_params,
-    count_trainable_params,
-    evaluate_constrained_policy,
-)
 
+def set_trainable_params(model, mode):
+    for p in model.parameters():
+        p.requires_grad = False
+
+    if mode == "mp":
+        for p in model.MP.parameters():
+            p.requires_grad = True
+
+    elif mode == "decoder_last":
+        for p in model.MP.parameters():
+            p.requires_grad = True
+
+        for block in model.decoder.blocks[-1:]:
+            for p in block.parameters():
+                p.requires_grad = True
+
+    else:
+        raise ValueError(f"Unknown train mode: {mode}")
+
+
+def count_trainable_params(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
+
+def evaluate_constrained_policy(
+    policy,
+    env_id,
+    num_episodes,
+    start_seed,
+    max_episode_steps,
+):
+    results = []
+    action_counts = {}
+
+    for episode_idx in range(num_episodes):
+        seed = start_seed + episode_idx
+
+        env = gym.make(env_id, render_mode="rgb_array")
+        env.reset(seed=seed)
+        randomize_agent(env, seed)
+
+        total_reward = 0.0
+        success = False
+        final_steps = max_episode_steps
+
+        for step in range(max_episode_steps):
+            sample = sample_action(
+                policy=policy,
+                env=env,
+                temperature=0.3,
+            )
+
+            action_id = sample["action_id"]
+            action_name = sample["action"]
+
+            action_counts[action_name] = action_counts.get(action_name, 0) + 1
+
+            _, reward, terminated, truncated, _ = env.step(action_id)
+            total_reward += reward
+
+            if terminated or truncated:
+                success = terminated and reward > 0
+                final_steps = step + 1
+                break
+
+        env.close()
+
+        results.append(
+            {
+                "seed": seed,
+                "success": success,
+                "return": total_reward,
+                "steps": final_steps,
+            }
+        )
+
+    return {
+        "success_rate": sum(r["success"] for r in results) / len(results),
+        "avg_return": sum(r["return"] for r in results) / len(results),
+        "avg_steps": sum(r["steps"] for r in results) / len(results),
+        "action_counts": action_counts,
+    }
 
 def rollout_after_first_action(env_id, seed, first_action, max_steps):
     env = gym.make(env_id, render_mode="rgb_array")
