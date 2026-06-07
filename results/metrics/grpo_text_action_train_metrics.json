@@ -1,0 +1,274 @@
+{
+  "args": {
+    "checkpoint_path": "outputs\\final_rerun\\sft_text_action\\final",
+    "output_dir": "outputs\\final_rerun\\grpo_text_action",
+    "env_id": "MiniGrid-Empty-8x8-v0",
+    "train_mode": "mp",
+    "updates": 10,
+    "group_size": 4,
+    "temperature": 2.0,
+    "max_new_tokens": 40,
+    "lr": 1e-06,
+    "invalid_penalty": 0.05,
+    "max_episode_steps": 30,
+    "eval_every": 5,
+    "eval_episodes": 5,
+    "start_seed": 60000,
+    "eval_start_seed": 70000,
+    "seed": 42
+  },
+  "trainable_params": 11796480,
+  "updates": [
+    {
+      "update": 1,
+      "reward_mean": 0.9859374761581421,
+      "reward_std": 0.0,
+      "actions": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "invalid": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "texts": [
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward"
+      ],
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 2,
+      "reward_mean": 0.9683593511581421,
+      "reward_std": 0.0,
+      "actions": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "invalid": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "texts": [
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right"
+      ],
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 3,
+      "reward_mean": 0.96484375,
+      "reward_std": 0.0,
+      "actions": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "invalid": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "texts": [
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right"
+      ],
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 4,
+      "reward_mean": 0.971875011920929,
+      "reward_std": 0.0,
+      "actions": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "invalid": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "texts": [
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right"
+      ],
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 5,
+      "reward_mean": 0.975390613079071,
+      "reward_std": 0.0,
+      "actions": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "invalid": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "texts": [
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right"
+      ],
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 6,
+      "reward_mean": 0.9613281488418579,
+      "reward_std": 0.0,
+      "actions": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "invalid": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "texts": [
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn left to face a better direction.\nAction: left",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn left to face a better direction.\nAction: left",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn left to face a better direction.\nAction: left",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn left to face a better direction.\nAction: left"
+      ],
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 7,
+      "reward_mean": 0.982421875,
+      "reward_std": 0.0,
+      "actions": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "invalid": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "texts": [
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward"
+      ],
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 8,
+      "reward_mean": 0.982421875,
+      "reward_std": 0.0,
+      "actions": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "invalid": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "texts": [
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn left to face a better direction.\nAction: left",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn left to face a better direction.\nAction: left",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn left to face a better direction.\nAction: left",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn left to face a better direction.\nAction: left"
+      ],
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 9,
+      "reward_mean": 0.982421875,
+      "reward_std": 0.0,
+      "actions": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "invalid": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "texts": [
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+        "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward"
+      ],
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 10,
+      "reward_mean": 0.971875011920929,
+      "reward_std": 0.0,
+      "actions": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "invalid": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "texts": [
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+        "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right"
+      ],
+      "loss": 0.0,
+      "skipped": true
+    }
+  ],
+  "eval": []
+}

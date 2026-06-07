@@ -1,0 +1,8 @@
+method,success_rate,avg_return,avg_steps,invalid_rate
+Zero-shot,0.0,0.0,30.0,0.0
+Forward,0.1,0.09841796875,27.45,0.0
+Expert,1.0,0.9787304687499999,6.05,0.0
+SFT-action,1.0,0.97732421875,6.45,0.0
+GRPO-action,1.0,0.9787304687499999,6.05,0.0
+SFT-text+action,1.0,0.9787304687499999,6.05,0.0
+GRPO-text+action,1.0,0.9787304687499999,6.05,0.0

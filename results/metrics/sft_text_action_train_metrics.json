@@ -1,0 +1,103 @@
+{
+  "args": {
+    "train_jsonl": "data/expert/train.jsonl",
+    "val_jsonl": "data/expert/val.jsonl",
+    "output_dir": "outputs\\final_rerun\\sft_text_action",
+    "output_format": "text_action",
+    "train_mode": "decoder_last",
+    "batch_size": 1,
+    "grad_accum_steps": 8,
+    "max_steps": 4000,
+    "eval_every": 250,
+    "save_every": 1000,
+    "eval_batches": 50,
+    "lr": 1e-05,
+    "max_length": 512,
+    "seed": 42,
+    "vit_img_size": 512,
+    "max_img_size": 512
+  },
+  "trainable_params": 21628800,
+  "steps": [
+    {
+      "step": 250,
+      "train_loss": 1.5154665954113007,
+      "val_loss": 0.9491514050960541
+    },
+    {
+      "step": 500,
+      "train_loss": 0.5696911714971066,
+      "val_loss": 0.31954971194267273
+    },
+    {
+      "step": 750,
+      "train_loss": 0.17464230072125791,
+      "val_loss": 0.11306833315640688
+    },
+    {
+      "step": 1000,
+      "train_loss": 0.050978863593190905,
+      "val_loss": 0.040286892168223856
+    },
+    {
+      "step": 1250,
+      "train_loss": 0.02474934083223343,
+      "val_loss": 0.015966403358615936
+    },
+    {
+      "step": 1500,
+      "train_loss": 0.011910639903508127,
+      "val_loss": 0.008847376557532698
+    },
+    {
+      "step": 1750,
+      "train_loss": 0.006931586112361401,
+      "val_loss": 0.007831186337862164
+    },
+    {
+      "step": 2000,
+      "train_loss": 0.0045448010605759915,
+      "val_loss": 0.005189982693409547
+    },
+    {
+      "step": 2250,
+      "train_loss": 0.0029793981118127703,
+      "val_loss": 0.004409240403911099
+    },
+    {
+      "step": 2500,
+      "train_loss": 0.002735515288426541,
+      "val_loss": 0.003854446985060349
+    },
+    {
+      "step": 2750,
+      "train_loss": 0.002422270568087697,
+      "val_loss": 0.00376535844814498
+    },
+    {
+      "step": 3000,
+      "train_loss": 0.0027735516196116805,
+      "val_loss": 0.003371927729458548
+    },
+    {
+      "step": 3250,
+      "train_loss": 0.002610897600534372,
+      "val_loss": 0.0032014481304213404
+    },
+    {
+      "step": 3500,
+      "train_loss": 0.0010943933218950405,
+      "val_loss": 0.0029079643241129815
+    },
+    {
+      "step": 3750,
+      "train_loss": 0.0010374560262425803,
+      "val_loss": 0.00263719868962653
+    },
+    {
+      "step": 4000,
+      "train_loss": 0.0015647881330223753,
+      "val_loss": 0.0012894489848986267
+    }
+  ]
+}

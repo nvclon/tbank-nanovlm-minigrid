@@ -1,0 +1,153 @@
+{
+  "env_id": "MiniGrid-Empty-8x8-v0",
+  "num_episodes": 20,
+  "success_rate": 0.1,
+  "avg_return": 0.09841796875,
+  "avg_steps": 27.45,
+  "invalid_rate": 0.0,
+  "action_counts": {
+    "forward": 549
+  },
+  "episodes": [
+    {
+      "seed": 30000,
+      "success": true,
+      "return": 0.9859375,
+      "steps": 4,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30001,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30002,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30003,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30004,
+      "success": true,
+      "return": 0.982421875,
+      "steps": 5,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30005,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30006,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30007,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30008,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30009,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30010,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30011,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30012,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30013,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30014,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30015,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30016,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30017,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30018,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30019,
+      "success": false,
+      "return": 0.0,
+      "steps": 30,
+      "invalid_count": 0
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "args": {
+    "train_jsonl": "data/expert/train.jsonl",
+    "val_jsonl": "data/expert/val.jsonl",
+    "output_dir": "outputs\\final_rerun\\sft_action",
+    "output_format": "action_only",
+    "train_mode": "mp",
+    "batch_size": 1,
+    "grad_accum_steps": 8,
+    "max_steps": 3000,
+    "eval_every": 250,
+    "save_every": 1000,
+    "eval_batches": 50,
+    "lr": 1e-05,
+    "max_length": 512,
+    "seed": 42,
+    "vit_img_size": 512,
+    "max_img_size": 512
+  },
+  "trainable_params": 11796480,
+  "steps": [
+    {
+      "step": 250,
+      "train_loss": 0.4645001000128686,
+      "val_loss": 0.19810026317834853
+    },
+    {
+      "step": 500,
+      "train_loss": 0.11720549937430769,
+      "val_loss": 0.0839729410642758
+    },
+    {
+      "step": 750,
+      "train_loss": 0.05469557931437157,
+      "val_loss": 0.02271495109423995
+    },
+    {
+      "step": 1000,
+      "train_loss": 0.04101005806424655,
+      "val_loss": 0.018455754395690745
+    },
+    {
+      "step": 1250,
+      "train_loss": 0.021893632723134944,
+      "val_loss": 0.026312013866845518
+    },
+    {
+      "step": 1500,
+      "train_loss": 0.022210910053923727,
+      "val_loss": 0.027919803000986575
+    },
+    {
+      "step": 1750,
+      "train_loss": 0.01612709341128357,
+      "val_loss": 0.015578486480517312
+    },
+    {
+      "step": 2000,
+      "train_loss": 0.006627590467163828,
+      "val_loss": 0.010167291106772608
+    },
+    {
+      "step": 2250,
+      "train_loss": 0.0021573314160923474,
+      "val_loss": 0.01753405783267226
+    },
+    {
+      "step": 2500,
+      "train_loss": 0.006596828909299802,
+      "val_loss": 0.01600507871422451
+    },
+    {
+      "step": 2750,
+      "train_loss": 0.00580750781315146,
+      "val_loss": 0.03471144611830823
+    },
+    {
+      "step": 3000,
+      "train_loss": 0.0049477120816591195,
+      "val_loss": 0.006141704402398318
+    }
+  ]
+}

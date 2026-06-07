@@ -1,0 +1,88 @@
+{
+  "seed": 90003,
+  "success": true,
+  "return": 0.975390625,
+  "steps": 7,
+  "frames": [
+    {
+      "step": 0,
+      "generated": "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+      "action_id": 1,
+      "action_name": "right",
+      "expert_action_id": 1,
+      "expert_action_name": "right",
+      "match_expert": true,
+      "invalid": false
+    },
+    {
+      "step": 1,
+      "generated": "Observation: The goal is not directly in front of the agent.\nPlan: Turn right to face a better direction.\nAction: right",
+      "action_id": 1,
+      "action_name": "right",
+      "expert_action_id": 1,
+      "expert_action_name": "right",
+      "match_expert": true,
+      "invalid": false
+    },
+    {
+      "step": 2,
+      "generated": "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+      "action_id": 2,
+      "action_name": "forward",
+      "expert_action_id": 2,
+      "expert_action_name": "forward",
+      "match_expert": true,
+      "invalid": false
+    },
+    {
+      "step": 3,
+      "generated": "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+      "action_id": 2,
+      "action_name": "forward",
+      "expert_action_id": 2,
+      "expert_action_name": "forward",
+      "match_expert": true,
+      "invalid": false
+    },
+    {
+      "step": 4,
+      "generated": "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+      "action_id": 2,
+      "action_name": "forward",
+      "expert_action_id": 2,
+      "expert_action_name": "forward",
+      "match_expert": true,
+      "invalid": false
+    },
+    {
+      "step": 5,
+      "generated": "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+      "action_id": 2,
+      "action_name": "forward",
+      "expert_action_id": 2,
+      "expert_action_name": "forward",
+      "match_expert": true,
+      "invalid": false
+    },
+    {
+      "step": 6,
+      "generated": "Observation: The agent is facing a useful direction toward the goal.\nPlan: Move forward to get closer to the green goal square.\nAction: forward",
+      "action_id": 2,
+      "action_name": "forward",
+      "expert_action_id": 2,
+      "expert_action_name": "forward",
+      "match_expert": true,
+      "invalid": false
+    },
+    {
+      "step": 7,
+      "generated": "<terminal>",
+      "action_id": null,
+      "action_name": null,
+      "expert_action_id": null,
+      "expert_action_name": null,
+      "match_expert": null,
+      "invalid": false
+    }
+  ]
+}

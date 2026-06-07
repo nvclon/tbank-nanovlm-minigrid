@@ -1,0 +1,170 @@
+{
+  "args": {
+    "checkpoint_path": "outputs\\final_rerun\\sft_action\\final",
+    "output_dir": "outputs\\final_rerun\\grpo_action",
+    "env_id": "MiniGrid-Empty-8x8-v0",
+    "train_mode": "mp",
+    "updates": 20,
+    "group_size": 4,
+    "temperature": 1.2,
+    "lr": 1e-06,
+    "max_episode_steps": 30,
+    "eval_every": 5,
+    "eval_episodes": 20,
+    "save_every": 10,
+    "start_seed": 40000,
+    "eval_start_seed": 50000,
+    "seed": 42
+  },
+  "trainable_params": 11796480,
+  "updates": [
+    {
+      "update": 1,
+      "reward_mean": 0.982421875,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 2,
+      "reward_mean": 0.9859374761581421,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 3,
+      "reward_mean": 0.9859374761581421,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 4,
+      "reward_mean": 0.9789062738418579,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 5,
+      "reward_mean": 0.975390613079071,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 6,
+      "reward_mean": 0.989453136920929,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 7,
+      "reward_mean": 0.975390613079071,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 8,
+      "reward_mean": 0.992968738079071,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 9,
+      "reward_mean": 0.9789062738418579,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 10,
+      "reward_mean": 0.9683593511581421,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 11,
+      "reward_mean": 0.992968738079071,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 12,
+      "reward_mean": 0.9595702886581421,
+      "reward_std": 0.0030446257442235947,
+      "loss": -1.6738239526748657,
+      "group_success": 1.0,
+      "group_avg_steps": 11.5,
+      "actions": [
+        "left",
+        "right",
+        "left",
+        "left"
+      ]
+    },
+    {
+      "update": 13,
+      "reward_mean": 0.975390613079071,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 14,
+      "reward_mean": 0.989453136920929,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 15,
+      "reward_mean": 0.96484375,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 16,
+      "reward_mean": 0.982421875,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 17,
+      "reward_mean": 0.9683593511581421,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 18,
+      "reward_mean": 0.9613281488418579,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 19,
+      "reward_mean": 0.971875011920929,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    },
+    {
+      "update": 20,
+      "reward_mean": 0.96484375,
+      "reward_std": 0.0,
+      "loss": 0.0,
+      "skipped": true
+    }
+  ],
+  "eval": []
+}

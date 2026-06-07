@@ -1,0 +1,155 @@
+{
+  "env_id": "MiniGrid-Empty-8x8-v0",
+  "num_episodes": 20,
+  "success_rate": 1.0,
+  "avg_return": 0.9787304687499999,
+  "avg_steps": 6.05,
+  "invalid_rate": 0.0,
+  "action_counts": {
+    "forward": 91,
+    "left": 7,
+    "right": 23
+  },
+  "episodes": [
+    {
+      "seed": 30000,
+      "success": true,
+      "return": 0.9859375,
+      "steps": 4,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30001,
+      "success": true,
+      "return": 0.982421875,
+      "steps": 5,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30002,
+      "success": true,
+      "return": 0.99296875,
+      "steps": 2,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30003,
+      "success": true,
+      "return": 0.96484375,
+      "steps": 10,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30004,
+      "success": true,
+      "return": 0.982421875,
+      "steps": 5,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30005,
+      "success": true,
+      "return": 0.9859375,
+      "steps": 4,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30006,
+      "success": true,
+      "return": 0.971875,
+      "steps": 8,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30007,
+      "success": true,
+      "return": 0.9859375,
+      "steps": 4,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30008,
+      "success": true,
+      "return": 0.968359375,
+      "steps": 9,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30009,
+      "success": true,
+      "return": 0.97890625,
+      "steps": 6,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30010,
+      "success": true,
+      "return": 0.9578125,
+      "steps": 12,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30011,
+      "success": true,
+      "return": 0.968359375,
+      "steps": 9,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30012,
+      "success": true,
+      "return": 0.97890625,
+      "steps": 6,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30013,
+      "success": true,
+      "return": 0.982421875,
+      "steps": 5,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30014,
+      "success": true,
+      "return": 0.9859375,
+      "steps": 4,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30015,
+      "success": true,
+      "return": 0.982421875,
+      "steps": 5,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30016,
+      "success": true,
+      "return": 0.97890625,
+      "steps": 6,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30017,
+      "success": true,
+      "return": 0.975390625,
+      "steps": 7,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30018,
+      "success": true,
+      "return": 0.982421875,
+      "steps": 5,
+      "invalid_count": 0
+    },
+    {
+      "seed": 30019,
+      "success": true,
+      "return": 0.982421875,
+      "steps": 5,
+      "invalid_count": 0
+    }
+  ]
+}
